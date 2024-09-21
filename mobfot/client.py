@@ -14,7 +14,7 @@ class MobFot:
     LOGGER = getLogger(__name__)
 
     def __init__(
-        self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING"
+            self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING", timeout: int = 60
     ) -> None:
         SESSION = requests.Session()
         if proxies:
@@ -33,6 +33,7 @@ class MobFot:
             else:
                 print(f"Logging level {logging_level} not recognized!")
 
+        self.timeout = timeout
         self.session = CACHE_SESSION
         self.matches_url = f"{self.BASE_URL}/matches?"
         self.leagues_url = f"{self.BASE_URL}/leagues?"
@@ -76,13 +77,13 @@ class MobFot:
         Returns:
             dict: The response from the API
         """
-        response = self.session.get(url)
+        response = self.session.get(url, timeout=self.timeout)
         response.raise_for_status()
         self.LOGGER.debug(response)
         return response.json()
 
     def get_matches_by_date(
-        self, date: str, time_zone: str = "America/New_York"
+            self, date: str, time_zone: str = "America/New_York"
     ) -> dict:
         """Gets all the matches for a given date
 
@@ -110,12 +111,12 @@ class MobFot:
         return self.get_league(id=id)["matches"]
 
     def get_league(
-        self,
-        id: int,
-        tab: str = "overview",
-        type: str = "league",
-        time_zone: str = "America/New_York",
-        season: str = "",
+            self,
+            id: int,
+            tab: str = "overview",
+            type: str = "league",
+            time_zone: str = "America/New_York",
+            season: str = "",
     ) -> dict:
         """Gets information about a given league
 
@@ -134,11 +135,11 @@ class MobFot:
         return {}
 
     def get_team(
-        self,
-        id: int,
-        tab: str = "overview",
-        type: str = "league",
-        time_zone: str = "America/New_York",
+            self,
+            id: int,
+            tab: str = "overview",
+            type: str = "league",
+            time_zone: str = "America/New_York",
     ) -> dict:
         """Gets information about a given team
 
