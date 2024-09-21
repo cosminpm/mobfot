@@ -6,7 +6,7 @@ from typing import Optional, Union
 import requests
 from cachecontrol import CacheControl
 
-VERSION = "1.4.0"
+VERSION = "1.5.0"
 
 
 class MobFot:
@@ -14,7 +14,7 @@ class MobFot:
     LOGGER = getLogger(__name__)
 
     def __init__(
-            self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING", timeout: int = 60
+        self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING", timeout: int = 60
     ) -> None:
         SESSION = requests.Session()
         if proxies:
@@ -83,7 +83,7 @@ class MobFot:
         return response.json()
 
     def get_matches_by_date(
-            self, date: str, time_zone: str = "America/New_York"
+        self, date: str, time_zone: str = "America/New_York"
     ) -> dict:
         """Gets all the matches for a given date
 
@@ -111,12 +111,12 @@ class MobFot:
         return self.get_league(id=id)["matches"]
 
     def get_league(
-            self,
-            id: int,
-            tab: str = "overview",
-            type: str = "league",
-            time_zone: str = "America/New_York",
-            season: str = "",
+        self,
+        id: int,
+        tab: str = "overview",
+        type: str = "league",
+        time_zone: str = "America/New_York",
+        season: str = "",
     ) -> dict:
         """Gets information about a given league
 
@@ -135,11 +135,11 @@ class MobFot:
         return {}
 
     def get_team(
-            self,
-            id: int,
-            tab: str = "overview",
-            type: str = "league",
-            time_zone: str = "America/New_York",
+        self,
+        id: int,
+        tab: str = "overview",
+        type: str = "league",
+        time_zone: str = "America/New_York",
     ) -> dict:
         """Gets information about a given team
 
