@@ -12,6 +12,7 @@ Feature: Client usage
     And the "search_url" attribute equals "https://www.fotmob.com/api/searchData?"
     And the "tv_listing_url" attribute equals "https://www.fotmob.com/api/tvlisting?"
     And the "tv_listings_url" attribute equals "https://www.fotmob.com/api/tvlistings?"
+    And the "timeout" attribute equals "60"
 
   Scenario: get_matches_by_date
     Given there is a MobFot client

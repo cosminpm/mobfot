@@ -14,7 +14,7 @@ class MobFot:
     LOGGER = getLogger(__name__)
 
     def __init__(
-        self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING", timeout: int = 60
+        self, proxies: Optional[dict] = None, logging_level: Optional[str] = "WARNING", timeout: Optional[int] = 60
     ) -> None:
         SESSION = requests.Session()
         if proxies:

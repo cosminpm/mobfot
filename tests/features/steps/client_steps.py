@@ -18,6 +18,8 @@ def called(context, func_name):
 @then('the "{attr_name}" attribute equals "{value}"')
 def attribute(context, attr_name, value):
     attr = getattr(context.mobfot, attr_name)
+    if value.isdigit():
+        value = int(value)
     assert attr == value
 
 
